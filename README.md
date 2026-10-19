@@ -2,7 +2,7 @@
 
 Extensão experimental em **Manifest V3** projetada para aumentar a privacidade de navegação, mascarar rastreadores estruturados e estabilizar o comportamento de abas em segundo plano.
 
-O painel foi desenvolvido sob a identidade visual premium **Lost Koffie**, trazendo uma interface acolhedora e minimalista baseada em tons de café, creme e cobre.
+O painel foi desenvolvido sob a identidade visual premium **Lost Nook**, trazendo uma interface acolhedora e minimalista baseada em tons de café, creme e cobre.
 
 ---
 
@@ -51,10 +51,22 @@ Você também pode validar o comportamento de persistência de mídia utilizando
 
 ---
 
+## 📊 Resultados dos Testes
+
+Abaixo você pode conferir a demonstração visual do comportamento da extensão durante as rotinas de validação automatizadas e manuais.
+
+### 🎥 Demonstração Prática
+
+![Resultados dos Testes de Privacidade](./assets/resultados-testes.gif)
+
+> 💡 **Nota do desenvolvedor:** Se você preferir gerar ou visualizar o fluxo completo em formato de vídeo em vez de GIF animado, o arquivo de alta resolução está disponível na pasta raiz do repositório como `video-demonstrativo.mp4`.
+
+---
+
 ## ⚠️ Limitações Conhecidas
 
 O StillHere Guard intercepta com sucesso os sinais baseados em eventos periféricos tradicionais de interface, mas possui os seguintes limites técnicos:
 * **Verificação do Servidor:** O servidor do site monitorado pode notar se a sua conexão de rede foi interrompida ou se requisições assíncronas obrigatórias deixaram de ser enviadas.
 * **Loops de FPS Fixos:** Scripts que analisam a taxa de atualização do navegador através de loops contínuos de `requestAnimationFrame` ainda podem notar oscilações de desempenho impostas pelo próprio motor gráfico do sistema operacional.
 * **Efeitos Colaterais:** Manter os estados sempre ativos pode afetar o comportamento de players de mídia integrados (impedindo que pausem sozinhos) e suspender temporariamente rotinas de salvamento automático de rascunhos que dependem do evento `blur`.
-* **Páginas Protegidas:** Extensões do Chrome são proibidas por segurança de atuar em páginas internas do navegador (como `chrome://*`) ou na loja oficial de extensões.
+* **Páginas Protegidas:** Extensões do Chrome são proibidas por segurança de atuar em páginas internas do navegador (como `chrome://*`) ou na loja oficial de extensions.
