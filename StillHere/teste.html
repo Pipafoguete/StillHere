@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratório de Testes - StillHere Guard</title>
+    <style>
+        body { background: #0c0b0a; color: #eee2d3; font-family: sans-serif; padding: 30px; }
+        .box { background: #120d09; border: 1px solid rgba(238,226,211,0.1); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        input, textarea, [contenteditable] { width: 100%; max-width: 400px; padding: 10px; background: #080706; border: 1px solid rgba(238,226,211,0.2); border-radius: 6px; color: #fff; box-sizing: border-box; }
+        [contenteditable] { min-height: 50px; background: #080706; display: block; }
+        h3 { margin-top: 0; color: #d6a477; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+        iframe { width: 100%; max-width: 420px; height: 120px; border: 1px dashed #a96f43; border-radius: 8px; background: #171311; }
+    </style>
+</head>
+<body>
+    <h1>Laboratório Experimental de Manipulação do DOM</h1>
+    <p>Utilize esta página local para comprovar as rotinas de injeção síncrona e emulação sequencial de buffers.</p>
+
+    <!-- Caso 1: Input de Linha Única com maxlength -->
+    <div class="box">
+        <h3>Caso 1: Input Padrão (Limite de 20 caracteres)</h3>
+        <input type="text" maxlength="20" placeholder="Cole uma frase longa aqui para testar o limite...">
+    </div>
+
+    <!-- Caso 2: Editor Rico ContentEditable -->
+    <div class="box">
+        <h3>Caso 2: Área Editável (Rich Text Div)</h3>
+        <div contenteditable="true" placeholder="Cole algo aqui dentro..."></div>
+    </div>
+
+    <!-- Caso 3: Iframe Local Isolado -->
+    <div class="box">
+        <h3>Caso 3: Sub-Frame Embutido Isolado (Iframe)</h3>
+        <iframe srcdoc="<!DOCTYPE html><html><body style='color:#f1e9df;font-family:sans-serif;padding:10px;margin:0;background:#171311;'><h4>Janela Filha Isolada</h4><input type='text' placeholder='Teste a injeção profunda de frames aqui...'></body></html>"></iframe>
+    </div>
+
+    <!-- Caso 4: Validador de Visibilidade em Tempo Real -->
+    <div class="box">
+        <h3>Caso 4: Terminal de Ciclo de Vida</h3>
+        <p>Abra o console do desenvolvedor (**F12 -> Console**) para checar se o estado permanece limpo ou monitorado ao trocar de aba.</p>
+    </div>
+</body>
+</html>

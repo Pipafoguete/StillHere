@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "StillHere",
+  "version": "0.4.0",
+  "description": "Reduz sinais de visibilidade e saída da página e bloqueia alguns rastreadores conhecidos.",
+  "permissions": ["declarativeNetRequest", "scripting", "storage"],
+  "author": "Pipafoguete",
+  "icons": {
+    "16": "assets/Capav1.png",
+    "32": "assets/Capav1.png",
+    "48": "assets/Capav1.png",
+    "128": "assets/Capav1.png"
+  },
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*",
+    "file:///*"
+  ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Controle de Visibilidade"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      { "id": "bloqueios_analytics", "enabled": false, "path": "rules.json" }
+    ]
+  }
+}

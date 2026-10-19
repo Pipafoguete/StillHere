@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="card">
+        <!-- Cabeçalho Principal -->
+        <div class="brand">
+            <div class="brand-container-flex" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <div class="brand-main-info" style="display: flex; align-items: center; gap: 12px;">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7s0 6 8 10z"/>
+                        </svg>
+                    </div>
+                    <div class="brand-info">
+                        <span class="eyebrow">StillHere Guard</span>
+                        <h1 id="panel-title">PRIVACIDADE</h1>
+                    </div>
+                </div>
+                <!-- Botão de Engrenagem -->
+                <button class="settings-gear-btn" id="gear-tab-trigger" type="button" title="Configurações Avançadas" aria-label="Abrir configurações avançadas" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Abas Superiores Lost Koffie -->
+        <div class="tabs-nav" id="main-tabs-navbar" role="tablist" aria-label="Recursos da extensão">
+            <button class="tab-btn active" id="tab-visualizacao-trigger" type="button" role="tab" aria-selected="true" aria-controls="tab-visualizacao" data-target="tab-visualizacao">Visualização</button>
+            <button class="tab-btn" id="tab-colar-trigger" type="button" role="tab" aria-selected="false" aria-controls="tab-colar" data-target="tab-colar">Colar Texto</button>
+        </div>
+
+        <!-- ================= TAB 1: VISUALIZAÇÃO ================= -->
+        <div id="tab-visualizacao" class="tab-content active" role="tabpanel" aria-labelledby="tab-visualizacao-trigger">
+            <!-- Bloco Colapsável de Aviso Original -->
+            <details id="custom-details">
+                <summary>
+                    <span>📌 AVISO / NOTA</span>
+                    <span id="arrow-icon" style="transition: transform 0.2s;">▼</span>
+                </summary>
+                <div class="custom-text-content">
+                    A trava de frames impede a redução da taxa de quadros quando a janela é minimizada ou perde o foco. Devido ao alto consumo de processamento, a recomendação é ativá-la somente durante a realização da prova ou algo que queria bloquear, desativando-a logo em seguida.
+                    <br><br>
+                    A visualização básica funciona normalmente e não precisa ser desativada.
+                </div>
+            </details>
+
+            <!-- Controle 1: Básica -->
+            <div class="control">
+                <div class="control-copy">
+                    <span class="state" id="state">Carregando... Abas e Analytics</span>
+                    <span class="detail" id="detail">Sinais de aba e analytics bloqueados</span>
+                </div>
+                <button class="switch" id="toggle" type="button" role="switch" aria-label="Visualização básica" aria-checked="false">
+                    <span class="switch-thumb"></span>
+                </button>
+            </div>
+
+            <!-- Controle 2: Frames -->
+            <div class="control">
+                <div class="control-copy">
+                    <span class="state" id="state-frames">Carregando... Travamento de Iframes</span>
+                    <span class="detail" id="detail-frames">Sub-iframes isolados e congelados</span>
+                </div>
+                <button class="switch" id="toggle-frames" type="button" role="switch" aria-label="Trava de frames" aria-checked="false">
+                    <span class="switch-thumb"></span>
+                </button>
+            </div>
+            
+            <p class="hint" style="margin-top: 12px;">
+                <span class="hint-icon">💡</span>
+                <span>As alterações são aplicadas às abas acessíveis. Páginas especiais do navegador não permitem injeção.</span>
+            </p>
+        </div>
+
+        <!-- ================= TAB 2: COLAR TEXTO ================= -->
+        <div id="tab-colar" class="tab-content" role="tabpanel" aria-labelledby="tab-colar-trigger">
+            <div class="control">
+                <div class="control-copy">
+                    <span class="state" id="state-paste">Bypass de Colagem</span>
+                    <span class="detail" id="detail-paste">Carregando estado...</span>
+                </div>
+                <button class="switch" id="toggle-paste" type="button" role="switch" aria-label="Proteção de colagem" aria-checked="false">
+                    <span class="switch-thumb"></span>
+                </button>
+            </div>
+            
+            <p class="hint" style="margin-top: 14px;">
+                <span class="hint-icon">💡</span>
+                <span>Quando ativado, o texto colado é inserido em sequência com os intervalos configurados.</span>
+            </p>
+        </div>
+
+        <!-- ================= TAB 3: CONFIGURAÇÕES AVANÇADAS ================= -->
+        <div id="tab-config-avancada" class="tab-content" role="tabpanel" aria-label="Configurações avançadas">
+            <div style="margin-top: 12px; display: grid; gap: 14px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(8, 7, 6, 0.4);">
+                    <div class="control-copy">
+                        <span class="state" style="font-size: 12px;">Intervalo Base (Ms)</span>
+                        <span class="detail" style="font-size: 10px;">Tempo fixo entre letras</span>
+                    </div>
+                    <input type="number" id="input-delay-base" aria-label="Intervalo base em milissegundos" min="1" max="500" step="1" style="width: 60px; padding: 6px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--cream); font-family: inherit; font-size: 12px; text-align: center; outline: none;">
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(8, 7, 6, 0.4);">
+                    <div class="control-copy">
+                        <span class="state" style="font-size: 12px;">Flutuação Humana (Ms)</span>
+                        <span class="detail" style="font-size: 10px;">Variação aleatória do ritmo</span>
+                    </div>
+                    <input type="number" id="input-delay-var" aria-label="Variação do intervalo em milissegundos" min="0" max="200" step="1" style="width: 60px; padding: 6px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--cream); font-family: inherit; font-size: 12px; text-align: center; outline: none;">
+                </div>
+            </div>
+            <p class="hint" style="margin-top: 14px;">
+                <span class="hint-icon">⚙️</span>
+                <span>Altere os valores acima para redefinir instantaneamente o tempo de escrita do motor de bypass. Valores menores deixam a digitação mais rápida.</span>
+            </p>
+        </div>
+
+        <!-- Feedback de Erro Geral -->
+        <div class="error" id="error" role="alert" aria-live="polite"></div>
+
+        <div class="divider"></div>
+
+        <!-- Rodapé de Créditos Original -->
+        <div class="footer-tab">
+            <div class="footer-badge-square">
+                <img src="assets/Simbulo.png" alt="Icon" class="badge-icon-img">
+            </div>
+            <div class="footer-credits">
+                <span class="credits-label">Feito por:</span>
+                <span class="footer-brand-name">Pipafoguete</span>
+            </div>
+            <span class="lost-nook"><a href="https://Lostnook.com" target="_blank">Lost Nook</a></span>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
