@@ -1,0 +1,17 @@
+(() => {
+  console.clear();
+  console.log("%c[TESTE] Monitor de Segurança Ativado!", "color: #89CFF0; font-weight: bold; font-size: 14px;");
+  console.log("Instruções: Ative/Desative o botão na extensão e use o Ctrl+V no campo.");
+
+  // 1. Escuta se o site recebeu o comando de colagem padrão
+  document.addEventListener("paste", (e) => {
+    console.warn("🚨 [ALERTA DO SITE] Detecção de colagem padrão acionada! O site sabe que você colou.");
+  }, true);
+
+  // 2. Escuta os sinais de digitação física gerados pela extensão
+  let contagemTeclas = 0;
+  document.addEventListener("keydown", (e) => {
+    contagemTeclas++;
+    console.log(`%c⌨️ [TECLADO] Sinal de clique físico recebido: Tecla "${e.key}" (Toque nº ${contagemTeclas})`, "color: #38c978;");
+  }, true);
+})();

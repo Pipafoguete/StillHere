@@ -1,0 +1,69 @@
+(() => {
+  console.log("%c[MONITOR AVANÇADO] Cronômetro de ausência ativado!", "color: #38c978; font-weight: bold; font-size: 14px;");
+  console.log("Instruções: Mude de aba ou minimize o navegador, espere um pouco e retorne.");
+
+  let horarioSaida = null;
+  let totalSaidas = 0;
+
+  // Função para formatar a hora atual de forma legível
+  const obterHoraAtual = () => {
+    return new Date().toLocaleTimeString('pt-BR', { hour12: false }) + '.' + String(new Date().getMilliseconds()).padStart(3, '0');
+  };
+
+  // 1. Escuta quando o site perde a visibilidade (Mudança de aba)
+  document.addEventListener("visibilitychange", () => {
+    const agora = new Date();
+    const horaFormatada = obterHoraAtual();
+
+    if (document.hidden || document.visibilityState === "hidden") {
+      // Registra o exato momento que o usuário saiu
+      horarioSaida = agora;
+      totalSaidas++;
+      console.warn(`🛑 [%s] [SAÍDA DETECTADA] Você saiu da aba! (Ocorrência nº ${totalSaidas})`, horaFormatada);
+    } else {
+      // Registra o momento do retorno e calcula o intervalo se houver registro de saída anterior
+      if (horarioSaida) {
+        const tempoForaMs = agora - horarioSaida;
+        const tempoForaSegundos = (tempoForaMs / 1000).toFixed(2);
+        
+        console.log(
+          `%c✨ [${horaFormatada}] [RETORNO DETECTADO] Você voltou para a aba!\n⏱️ Tempo ausente: ${tempoForaSegundos} segundos.`,
+          "color: #2563eb; font-weight: bold;"
+        );
+        
+        // Reseta para a próxima medição
+        horarioSaida = null;
+      } else {
+        console.log(`✨ [${horaFormatada}] [FOCO RESTAURADO] Aba ficou visível (sem registro prévio de saída).`);
+      }
+    }
+  });
+
+  // 2. Escuta quando a janela perde o foco do sistema operacional (Ex: clicou em outra tela/programa)
+  window.addEventListener("blur", () => {
+    // Só inicia o cronômetro pelo blur se a aba já não tiver sido ocultada pelo visibilitychange
+    if (!horarioSaida) {
+      horarioSaida = new Date();
+      console.warn(`⚠️ [${obterHoraAtual()}] [FOCO PERDIDO] Você clicou fora da janela do navegador!`);
+    }
+  });
+
+  window.addEventListener("focus", () => {
+    if (horarioSaida && !document.hidden) {
+      const tempoForaMs = new Date() - horarioSaida;
+      const tempoForaSegundos = (tempoForaMs / 1000).toFixed(2);
+      console.log(
+        `%c⚡ [${obterHoraAtual()}] [FOCO RECUPERADO] Você clicou de volta na janela!\n⏱️ Tempo fora de foco: ${tempoForaSegundos} segundos.`,
+        "color: #7c3aed; font-weight: bold;"
+      );
+      horarioSaida = null;
+    }
+  });
+
+  // Função para você encerrar o script de teste
+  window.pararCronometro = () => {
+    console.log("%c[SISTEMA] Monitor de tempo encerrado.", "color: #ff4a4a; font-weight: bold;");
+  };
+
+  console.log("Para parar de monitorar, digite: pararCronometro()");
+})();
